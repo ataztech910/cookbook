@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
-const Recipe = ({initialData}) => {
+const Recipe = ({ initialData }: any) => {
   const router = useRouter()
   const { recipes, comment_page } = router.query
   let label = 'Next Recipe'
@@ -27,7 +27,7 @@ const Recipe = ({initialData}) => {
 
   return <div>
     Recipe: in 
-    {recipes && recipes.map((recipe: string, index: number) => {
+    {Array.isArray(recipes) && recipes && recipes.map((recipe: string, index: number) => {
         return <div key={index}><b>{recipe}</b></div>
     })}
     <button onClick={() => router.push(link)}>{label}</button>
