@@ -1,43 +1,44 @@
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { ArticleDataService, IArticle } from './core/articles-data.service'
+import styles from '../styles/Recipes.module.scss'
 
-const Recipe = ({ initialData }: any) => {
+const Recipe = ({ initialData }: Partial<any>) => {
   const router = useRouter()
+  const [content, setContent] = useState<IArticle>({} as IArticle);
   const { recipes, comment_page } = router.query
-  let label = 'Next Recipe'
-  let link = '/recipes/breakfast/HealthyBreakfast'
-  let default_comment_pages_value = Number(comment_page) | 10
-  if (recipes && recipes[2] === 'HealthyBreakfast') {
-    label = 'Previous Recipe'
-    link = '/recipes/breakfast/AnotherHealthyBreakfast'
-  }
-
+  let links = ArticleDataService.getInstance().getNavigation()
+  
   useEffect(() => {
-    // Init some default value
-    router.push(link+'?comment_page='+default_comment_pages_value, undefined, { shallow: true })
-  }, [])
+      if (recipes) {
+      setContent( content => ({...ArticleDataService.getInstance().getArcticle(recipes[1]) as any}))
+    }
+  }, [recipes])
 
-  useEffect(() => {
-      console.log(comment_page, initialData)
-  }, [comment_page, initialData])
-
-  const nextPageNumber = (page: string | string[] | undefined): number => {
-    return Number( Number(page) +1 )
-  }
-
-  return <div>
-    Recipe: in 
-    {Array.isArray(recipes) && recipes && recipes.map((recipe: string, index: number) => {
-        return <div key={index}><b>{recipe}</b></div>
-    })}
-    <button onClick={() => router.push(link)}>{label}</button>
-    <button onClick={() => router.push(link+'?comment_page='+nextPageNumber(comment_page), undefined, { shallow: true })}>Change comment page</button>
-  </div>
-}
-
-Recipe.getInitialProps = () => {
-  const initialData = 'data on load: '+Math.random()
-  return { initialData }
+  return (
+  <div className={styles.recipes}>
+    <div className={styles.flex}>
+      <div className={styles.blog}>
+        <h1>{content.title}</h1>
+        <p>{content.content}</p>
+      </div>
+      <div>
+        {
+          links && links.map( link => {
+            return (
+              <div 
+                key={link} 
+                onClick={() => router.push(`recipes/${link}`)}
+                className={styles.link}
+              >
+                {link}
+              </div>
+            )
+          })
+        }
+      </div>
+    </div>
+  </div>)
 }
 
 export default Recipe
