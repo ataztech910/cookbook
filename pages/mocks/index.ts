@@ -1,7 +1,9 @@
 import articles from "./articles.json"
+import baking from "./baking.json"
 
 const getMock = {
-    articles
+    articles,
+    baking
 }
 
 export { getMock }
