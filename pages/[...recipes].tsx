@@ -4,24 +4,44 @@ import { ArticleDataService, IArticle } from './core/articles-data.service'
 import styles from '../styles/Recipes.module.scss'
 import { BurgerDirector } from './core/burger-director'
 import { BurgerBuilder } from './core/burger-builder'
+import { IStrategy, Kitchen } from './core/burger-strategy'
+import { Strategies, StrategiesNames } from './core/burger-config'
 
 const Recipe = ({ initialData }: Partial<any>) => {
   const router = useRouter()
   const [content, setContent] = useState<IArticle>({} as IArticle);
-  const { recipes, comment_page } = router.query
+  const { recipes } = router.query
   let links = ArticleDataService.getInstance().getNavigation()
   const burgerBuilder = new BurgerBuilder()
   const burgerDirector = new BurgerDirector()
   burgerDirector.setBuilder(burgerBuilder)
-  
+
+  let burgerType = null
+  let context: Kitchen
+  let currentBurgerType: StrategiesNames
+  const changeBurgerType = () => {
+    console.log("current burger type", currentBurgerType)
+    // Next line of code having no sence. We will just switch strategies to show the example is works
+    const newStrategy = currentBurgerType === StrategiesNames.HAMBURGER ? StrategiesNames.CHICKENBURGER : StrategiesNames.HAMBURGER
+    currentBurgerType = newStrategy
+    context.setStrategy(Strategies[currentBurgerType])
+    context.bakeSomething(burgerBuilder, burgerDirector)
+  }
+
   useEffect(() => {
     if (recipes) {
       setContent( content => ({...ArticleDataService.getInstance().getArcticle(recipes[1]) as any}))
-      burgerDirector.buildHamburger()
-      console.log('getting the recipe', burgerBuilder.getRecipe())
-      console.log('checking what is in steps list now', burgerBuilder.getRecipe())
     }
   }, [recipes])
+
+  useEffect(() => {
+    if(Object.keys(content).length > 0) {
+      console.log("content.burger", content.burger)
+      burgerType = Strategies[content.burger as StrategiesNames]
+      context = new Kitchen(burgerType)
+      context.bakeSomething(burgerBuilder, burgerDirector)
+    }
+  }, [content])
 
   return (
   <div className={styles.recipes}>
@@ -29,6 +49,7 @@ const Recipe = ({ initialData }: Partial<any>) => {
       <div className={styles.blog}>
         <h1>{content.title}</h1>
         <p>{content.content}</p>
+        <button onClick={ () => changeBurgerType() }> Change burger type </button>
       </div>
       <div>
         {

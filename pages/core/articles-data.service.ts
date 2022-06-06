@@ -9,6 +9,7 @@ interface IArticle {
     id: string
     title: string
     author: string
+    burger: string
     content: string
     category: ICategory
     image: string
