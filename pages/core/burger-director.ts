@@ -1,4 +1,5 @@
 import { IBuilder } from "./burger-builder";
+import { BurgerSteps } from "./burger-config";
 
 class BurgerDirector {
     private builder!: IBuilder
@@ -8,11 +9,11 @@ class BurgerDirector {
     }
 
     public buildHamburger(): void{
-        this.builder.backingTopBunsPartWithSeeds()
-        this.builder.backingMeat()
-        this.builder.grillBurgerWithCheese()
-        this.builder.prepareBurgerSouce()
-        this.builder.backingBottomBunsPart()
+        this.builder[BurgerSteps.TOP_BUNS_WITH_SEEDS]()
+        this.builder[BurgerSteps.MEAT]()
+        this.builder[BurgerSteps.GRILL_BURGER_WITH_CHEESE]()
+        this.builder[BurgerSteps.BURGER_SOUCE]()
+        this.builder[BurgerSteps.BOTTOM_BUNS]()
     }
 
 }
