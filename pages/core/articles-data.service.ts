@@ -47,5 +47,5 @@ class ArticleDataService {
     }
 
 }
-
-export { IArticle, ArticleDataService }
+export type { IArticle }
+export { ArticleDataService }
