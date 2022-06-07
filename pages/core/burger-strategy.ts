@@ -40,4 +40,5 @@ class Kitchen {
     }
 }
 
-export { Kitchen, IStrategy, MakeHamburger, MakeChickenburger }
+export type { IStrategy }
+export { Kitchen, MakeHamburger, MakeChickenburger }

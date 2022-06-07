@@ -74,5 +74,5 @@ class BurgerBuilder implements IBuilder {
         console.log('Grill with cheese is builded')
     }
 }
-
-export { IBuilder, BurgerBuilder }
+export type { IBuilder }
+export { BurgerBuilder }
