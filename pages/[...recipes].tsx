@@ -36,7 +36,7 @@ const Recipe = ({ initialData }: any) => {
 }
 
 Recipe.getInitialProps = () => {
-  const initialData = 'data on load: '+Math.random()
+  const initialData = 'data on load: ' + Math.random()
   return { initialData }
 }
 

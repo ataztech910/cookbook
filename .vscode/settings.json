@@ -1,0 +1,8 @@
+{
+    "workbench.tree.renderIndentGuides": "always",
+    "editor.renderWhitespace": "all",
+    "git.branchWhitespaceChar": "-",
+    "editor.detectIndentation": true,
+    "editor.guides.indentation": true,
+    "editor.guides.highlightActiveIndentation": "always"
+}
