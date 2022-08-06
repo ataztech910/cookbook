@@ -3,12 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -- -p 3005",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest",
+    "test:e2e": "yarn playwright test",
+    "test:all": "yarn test --coverage && yarn playwright test"
   },
   "dependencies": {
+    "jest-environment-jsdom": "^28.1.1",
     "next": "12.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -16,12 +20,23 @@
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
+    "@playwright/test": "^1.22.2",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "12.1.5",
     "@types/next": "^9.0.0",
     "@types/node": "17.0.21",
     "@types/react": "17.0.39",
     "@types/styled-components": "^5.1.24",
+    "babel-jest": "^28.1.1",
     "eslint": "8.10.0",
     "eslint-config-next": "12.1.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^28.1.1",
+    "react-test-renderer": "^18.1.0",
     "typescript": "4.6.2"
+  },
+  "resolutions": {
+    "@types/react": "17.0.2",
+    "@types/react-dom": "17.0.2"
   }
 }

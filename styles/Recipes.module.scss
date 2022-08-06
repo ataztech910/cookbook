@@ -1,0 +1,24 @@
+@import 'colors';
+
+.recipes {
+    margin: 1rem;
+    @extend .content !optional;
+}
+
+.blog {
+    margin-right: 5rem;
+}
+
+.flex {
+    display: flex;
+}
+
+.link {
+    margin-bottom: 1rem;
+    cursor: pointer;
+    background-color: $red;
+    border: none;
+    padding: 0.5rem 1rem;
+    color: $white;
+    border-radius: 30px;
+}

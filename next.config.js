@@ -10,7 +10,8 @@ const nextConfig = {
   },
   env: {
     SECRET: process.env.SECRET
-  }
+  },
+  pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js']
 }
 
 module.exports = nextConfig
