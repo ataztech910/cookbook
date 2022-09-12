@@ -39,7 +39,7 @@ class ArticleDataService {
         return this.navigation
     }
 
-    getArcticle(id: string) {
+    getArticle(id: string) {
         if (!this.articles[id]) {
             this.articles[id] = getMock.articles.find( (article) => article.id === id ) as IArticle
         }

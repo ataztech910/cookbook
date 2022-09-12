@@ -1,16 +1,16 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { ArticleDataService, IArticle } from './core/articles-data.service'
-import styles from '../styles/Recipes.module.scss'
-import { BurgerDirector } from './core/burger-director'
-import { BurgerBuilder } from './core/burger-builder'
-import { IStrategy, Kitchen } from './core/burger-strategy'
-import { Strategies, StrategiesNames } from './core/burger-config'
+import { ArticleDataService, IArticle } from '../core/articles-data.service'
+import styles from '../../styles/Recipes.module.scss'
+import { BurgerDirector } from '../core/burger-director'
+import { BurgerBuilder } from '../core/burger-builder'
+import { IStrategy, Kitchen } from '../core/burger-strategy'
+import { Strategies, StrategiesNames } from '../core/burger-config'
 
 const Recipe = ({ initialData }: Partial<any>) => {
   const router = useRouter()
   const [content, setContent] = useState<IArticle>({} as IArticle);
-  const { recipes } = router.query
+  const { pid } = router.query
   let links = ArticleDataService.getInstance().getNavigation()
   const burgerBuilder = new BurgerBuilder()
   const burgerDirector = new BurgerDirector()
@@ -29,10 +29,10 @@ const Recipe = ({ initialData }: Partial<any>) => {
   }
 
   useEffect(() => {
-    if (recipes) {
-      setContent( content => ({...ArticleDataService.getInstance().getArcticle(recipes[1]) as any}))
+    if (pid) {
+      setContent( content => ({...ArticleDataService.getInstance().getArticle(pid as string) as any}))
     }
-  }, [recipes])
+  }, [pid])
 
   useEffect(() => {
     if(Object.keys(content).length > 0) {
@@ -57,7 +57,7 @@ const Recipe = ({ initialData }: Partial<any>) => {
             return (
               <div 
                 key={link} 
-                onClick={() => router.push(`recipes/${link}`)}
+                onClick={() => router.push(`${link}`)}
                 className={styles.link}
               >
                 {link}
