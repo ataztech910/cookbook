@@ -7,6 +7,7 @@ const LoginPage: NextPage = () => {
   return (
     <article>
       <LoginForm />
+      <Link href="/"><a className={styles.link}>Main</a></Link>
     </article>
   )
 }

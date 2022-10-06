@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Placeholders } from "../../pages/core/configs"
 import { isLetter } from "../../pages/core/utils"
 
-const PasswordInput = () => {
+const PasswordInput = ({ onPasswordEnter }: any) => {
     const input = {
         placeholder: Placeholders.PASSWORD_INPUT
     }
@@ -14,6 +14,7 @@ const PasswordInput = () => {
         if(isLetter(value) && value.length <= maxValueLength) {
             setValue(value)
         }
+        onPasswordEnter(value)
     }
 
     return (
