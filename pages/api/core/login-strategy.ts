@@ -40,7 +40,6 @@ class LoginWithGQL implements ILoginStrategy {
         console.log('checkUser', checkUser)
         if (checkUser && checkUser.getUser) {
             loginState = { state: true, token: generateToken(), userProperties: checkUser.getUser.userProperties }
-            
         }
         return loginState
     }

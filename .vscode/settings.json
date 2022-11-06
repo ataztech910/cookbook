@@ -4,5 +4,12 @@
     "git.branchWhitespaceChar": "-",
     "editor.detectIndentation": true,
     "editor.guides.indentation": true,
-    "editor.guides.highlightActiveIndentation": "always"
+    "editor.guides.highlightActiveIndentation": "always",
+    "workbench.colorCustomizations": {
+        "editor.lineHighlightBackground": "#1073cf2d",
+        "editor.lineHighlightBorder": "#9fced11f",
+        "activityBar.background": "#023430",
+        "titleBar.activeBackground": "#034943",
+        "titleBar.activeForeground": "#E9FEFC"
+    }
 }
