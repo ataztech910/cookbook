@@ -3,7 +3,7 @@ import authSlice from './authSlice';
 import { createWrapper } from "next-redux-wrapper";
 import { LoginService } from '../api/core/login.service'
 
-const apiCallMiddleware = (store) => (next) => (action) => {
+const apiCallMiddleware = (store: any) => (next: any) => (action: any) => {
   console.log("action", action);
   LoginService.getInstance().anyAPICall();
   next(action);
@@ -22,6 +22,6 @@ export const store = configureStore({
 
 const makeStore = () => store;
 
-export type RootState = ReturnType<typeof store>
+export type RootState = ReturnType<any>
 export type AppDispatch = typeof store.dispatch
 export const wrapper = createWrapper<RootState>(makeStore);
