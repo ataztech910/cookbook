@@ -6,7 +6,7 @@ const About: NextPage = () => {
   return (
     <div className={styles.container}>
       <h1>Hello there ! This is the About page of CookBook</h1>
-      <Link href="/"><a className={styles.link}>Main</a></Link>
+      <Link href="/">Main</Link>
     </div>
   )
 }

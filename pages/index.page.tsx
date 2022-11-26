@@ -11,7 +11,7 @@ const Home: NextPage = () => {
   return (
     <div className={styles.container}>
       <h1>Hello there ! This is the main page of CookBook</h1>
-      <Link href="/about"><a className={styles.link}>About</a></Link>
+      <Link href="/about">About</Link>
     </div>
   )
 }
