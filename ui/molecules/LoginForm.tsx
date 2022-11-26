@@ -5,25 +5,30 @@ import { TestIDs } from '../../pages/core/configs'
 import styles from '../../styles/LoginForm.module.scss'
 import { LoginService } from '../../pages/api/core/login.service'
 import { useState } from 'react'
+import { useAppDispatch } from '../../pages/hooks'
+import { changeAuthState } from "../../pages/store/authSlice";
 
 const LoginForm = () => {
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
+    const dispatch = useAppDispatch();
 
     const errorTestID = TestIDs.ERROR
     const loginService = LoginService.getInstance()
-    const loginAction = (event: any) => {
-        console.log('login')
-        event.preventDefault()
-        loginService.login(login, password)
+    const loginAction = async (event: any) => {
+        console.log('login');
+        event.preventDefault();
+        const loginState = await loginService.login(login, password);
+        dispatch(changeAuthState(loginState))
+        console.log('loginState', loginState)
     }
 
     const loginEnter = (value: string ) => {
-        setLogin(value)
+        setLogin(value);
     }
 
     const passwordEnter = (value: string ) => {
-        setPassword(value)
+        setPassword(value);
     }
 
     return (

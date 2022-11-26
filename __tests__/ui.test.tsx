@@ -30,7 +30,7 @@ const expectation =  (element) => expect(element).toBeInTheDocument()
 
 describe('UI inputs must render properly', () => {
   it('renders a text input', () => {
-    render(<TextInput />)
+    render(<TextInput onLoginEnter={(value) => value}/>)
 
     const input = testObject.isTextInput(screen)
 
@@ -46,7 +46,7 @@ describe('UI inputs must render properly', () => {
   })
 
   it('renders a password input', () => {
-    render(<PasswordInput />)
+    render(<PasswordInput onPasswordEnter={(value) => value}/>)
     const input = testObject.isPasswordInput(screen)
 
     expectation(input)
