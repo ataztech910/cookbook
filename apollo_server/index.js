@@ -24,7 +24,7 @@ const resolvers = {
 const {
     ApolloServerPluginLandingPageLocalDefault
   } = require('apollo-server-core');
-  
+
   const server = new ApolloServer({
     typeDefs,
     resolvers,

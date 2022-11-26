@@ -11,9 +11,9 @@ class LoginWithMock implements ILoginStrategy {
             return userItem.user === user && userItem.password === password
         })
 
-        let loginState = { state: false, token: '', userProperties: [] }
+        let loginState = { isLoggedIn: false, token: '', userProperties: [] }
         if (checkUser) {
-            loginState = { state: true, token: generateToken(), userProperties: checkUser.userProperties }
+            loginState = { isLoggedIn: true, token: generateToken(), userProperties: checkUser.userProperties }
         }
         return loginState;
     }
@@ -35,12 +35,11 @@ class LoginWithGQL implements ILoginStrategy {
         return await data
     }
     public async login(user: string, password: string) {
-        let loginState = { state: false, token: '', userProperties: [] }
+        let loginState = { isLoggedIn: false, token: '', userProperties: [] }
         const checkUser = await this.gqlLogin(user, password)
         console.log('checkUser', checkUser)
         if (checkUser && checkUser.getUser) {
-            loginState = { state: true, token: generateToken(), userProperties: checkUser.getUser.userProperties }
-            
+            loginState = { isLoggedIn: true, token: generateToken(), userProperties: checkUser.getUser.userProperties }
         }
         return loginState
     }

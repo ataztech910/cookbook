@@ -1,7 +1,7 @@
 import { UserBuilderMethods } from "./configuration";
 
 interface IUser {
-    state: boolean;
+    isLoggedIn: boolean;
     token: string;
     userProperties: Array<keyof typeof UserBuilderMethods>;
     userPropertiesActions?: string[]

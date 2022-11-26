@@ -22,13 +22,17 @@ class LoginService {
         // Here we will provide the login logic depending on what strategy is selected
         const loginContext = new LoginContext(loginType);
         const loginState = await loginContext.useLogin(user, password)
-        console.log('loginState', loginState)
-        this.isLoggedIn = loginState.state;
+        this.isLoggedIn = loginState.isLoggedIn;
         this.applicationUser = new ApplicationUser(loginState)
         loginState.userProperties.forEach((property: keyof typeof UserBuilderMethods) => {
             UserBuilderMethods[property] && this.applicationUser[UserBuilderMethods[property]]()
         })
         this.token = loginState.token;
+        return loginState;
+    }
+
+    anyAPICall() {
+        console.log('here we can call an API');
     }
 
     getLoginStatus() {
