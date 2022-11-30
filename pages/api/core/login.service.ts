@@ -1,7 +1,9 @@
 import { types } from "sass";
 import { loginType, UserBuilderMethods } from "./configuration";
+import { updateStorage } from "../../core/local-storage";
 import { LoginContext } from "./login-strategy";
 import { ApplicationUser } from "./user-builder";
+import { LocalStorageKeys } from "../../core/configs";
 
 class LoginService {
     private static instance: LoginService;
@@ -28,11 +30,12 @@ class LoginService {
             UserBuilderMethods[property] && this.applicationUser[UserBuilderMethods[property]]()
         })
         this.token = loginState.token;
+        updateStorage(LocalStorageKeys.LOGIN, JSON.stringify(loginState))
         return loginState;
     }
 
-    anyAPICall() {
-        console.log('here we can call an API');
+    anyAPICall(data: any) {
+        console.log('here we can call an API', data);
     }
 
     getLoginStatus() {

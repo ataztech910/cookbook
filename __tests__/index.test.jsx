@@ -1,10 +1,11 @@
 import React from 'react'
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import Home from '../pages/index.page'
-
+import { renderWithProviders } from '../utils'
+ 
 describe('Home', () => {
   it('renders a heading', () => {
-    render(<Home />)
+    renderWithProviders(<Home />)
 
     const heading = screen.getByRole('heading', {
       name: /Hello there ! This is the main page of CookBook/i,

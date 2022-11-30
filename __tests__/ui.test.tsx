@@ -7,6 +7,7 @@ import SubmitButton from '../ui/atoms/SubmitButton'
 // Molecules
 import LoginForm from '../ui/molecules/LoginForm'
 import { Labels, Placeholders, TestIDs } from '../pages/core/configs'
+import { renderWithProviders } from '../utils'
 
 const testObject: {[key: string]: any} = {
   isTextInput: (screen) => screen.getByPlaceholderText(Placeholders.TEXT_INPUT),
@@ -68,7 +69,7 @@ describe('UI inputs must render properly', () => {
 
 describe('Form should be rendered properly', () => {
   it('renders login form', () => {
-    render(<LoginForm />)
+    renderWithProviders(<LoginForm />)
     const testKeys = Object.keys(testObject)
     if(Array.isArray(testKeys) && testKeys.length > 0) {
       testKeys.forEach((test: string) => {

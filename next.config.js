@@ -11,6 +11,11 @@ const nextConfig = {
   env: {
     SECRET: process.env.SECRET
   },
+  i18n: {
+    locales: ['en', 'de'],
+    defaultLocale: 'en',
+  },
+  trailingSlash: true,
   pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js', 'api.ts', 'api.js']
 }
 

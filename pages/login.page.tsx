@@ -6,8 +6,8 @@ import LoginForm from '../ui/molecules/LoginForm'
 const LoginPage: NextPage = () => {
   return (
     <article className="content">
+      <h1>Login</h1>
       <LoginForm />
-      <Link href="/">Main</Link>
     </article>
   )
 }

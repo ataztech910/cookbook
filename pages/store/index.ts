@@ -2,10 +2,15 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import authSlice from './authSlice';
 import { createWrapper } from "next-redux-wrapper";
 import { LoginService } from '../api/core/login.service'
+import articleSlice from './articleSlice';
 
-const apiCallMiddleware = (store) => (next) => (action) => {
-  console.log("action", action);
-  LoginService.getInstance().anyAPICall();
+const apiCallMiddleware = (store: any) => (next: any) => (action: any) => {
+  console.log("action", {store, action});
+  let data = null;
+  if (action.type === 'article/changeArticleState' && action.payload.save) {
+    data = action.payload
+  }
+  LoginService.getInstance().anyAPICall(data);
   next(action);
 };
 
@@ -14,6 +19,7 @@ export const store = configureStore({
                     getDefaultMiddleware()
                       .concat(apiCallMiddleware),
   reducer: {
+    [articleSlice.name]: articleSlice.reducer,
     [authSlice.name]: authSlice.reducer,
   },
   devTools: true,
@@ -22,6 +28,7 @@ export const store = configureStore({
 
 const makeStore = () => store;
 
-export type RootState = ReturnType<typeof store>
+export type RootState = ReturnType<any>
+export type AppStore = ReturnType<any>
 export type AppDispatch = typeof store.dispatch
 export const wrapper = createWrapper<RootState>(makeStore);

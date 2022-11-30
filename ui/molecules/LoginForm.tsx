@@ -7,10 +7,14 @@ import { LoginService } from '../../pages/api/core/login.service'
 import { useState } from 'react'
 import { useAppDispatch } from '../../pages/hooks'
 import { changeAuthState } from "../../pages/store/authSlice";
+import { useSelector } from "react-redux";
+import { useRouter } from 'next/router'
 
 const LoginForm = () => {
-    const [login, setLogin] = useState('')
-    const [password, setPassword] = useState('')
+    const [login, setLogin] = useState('');
+    const [password, setPassword] = useState('');
+    const router = useRouter();
+    
     const dispatch = useAppDispatch();
 
     const errorTestID = TestIDs.ERROR
@@ -19,8 +23,12 @@ const LoginForm = () => {
         console.log('login');
         event.preventDefault();
         const loginState = await loginService.login(login, password);
-        dispatch(changeAuthState(loginState))
-        console.log('loginState', loginState)
+        console.log('loginState', loginState);
+        dispatch(changeAuthState(loginState));
+        if (loginState.isLoggedIn) {
+            router.push('/articles');
+        }
+        console.log('loginState', loginState);
     }
 
     const loginEnter = (value: string ) => {

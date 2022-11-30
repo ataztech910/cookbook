@@ -1,0 +1,16 @@
+[
+    {
+        "id": 123, 
+        "title": "test title", 
+        "description": "test description", 
+        "text": "test text", 
+        "publishingDate": "11.11.2022"
+    },
+    {
+        "id": 1234, 
+        "title": "new test title", 
+        "description": "new test description", 
+        "text": "new test text", 
+        "publishingDate": "12.11.2022"
+    }
+]

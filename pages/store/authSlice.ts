@@ -1,33 +1,33 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-export type Auth = {
-    isLoggedIn: boolean;
-    token: string | null;
-    userProperties: Array<string>
-}
+import { RootState } from ".";
 
 export type AuthState = {
-    auth: Auth
-};
+    isLoggedIn?: boolean;
+    token?: string | null;
+    userProperties?: Array<string>
+}
 
 export const INITIAL_STATE: AuthState = {
-    auth: {
-        isLoggedIn: false,
-        token: null,
-        userProperties: []
-    },
+    isLoggedIn: false,
+    token: null,
+    userProperties: [],
 };
 
 const authSlice = createSlice({
   name: "auth",
   reducers: {
-    changeAuthState: (state: AuthState, action: PayloadAction<Auth>) => {
+    changeAuthState: (state: RootState, action: PayloadAction<AuthState>) => {
         const newAuth = action.payload;
-        state.auth = newAuth;
+        state = {...newAuth };
+        console.log('new state', state);
+        return state;
     }
   },
   initialState: INITIAL_STATE, 
 });
 
+export const selectAuthState = (state: RootState) => {
+    return state.auth.isLoggedIn;
+}
 export const { changeAuthState } = authSlice.actions;
 export default authSlice;
