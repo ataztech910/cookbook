@@ -1,6 +1,6 @@
 import '../styles/globals.scss'
 import { Provider } from "react-redux";
-import type { AppProps } from 'next/app'
+import type { AppProps, NextWebVitalsMetric } from 'next/app'
 import Layout from './components/layout'
 import { wrapper } from "./store";
 import { changeAuthState } from './store/authSlice';
@@ -16,6 +16,9 @@ const messages: any = {
   de,
   en
 };
+export function reportWebVitals(metric: NextWebVitalsMetric) {
+  console.log(metric)
+}
 
 function CookBook({ Component , pageProps }: AppProps ) {
   const { store } = wrapper.useWrappedStore(pageProps);

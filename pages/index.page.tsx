@@ -28,9 +28,17 @@ const Home: NextPage = () => {
   const mockArticle = {id: 123, title: 'test title', description: 'test description', text: 'test text', publishingDate: '11.11.2022'};
   return (
     <div className={styles.container}>
-      <h1>Hello there ! This is the main page of CookBook</h1>
+      <h1>Welcome to the cookbook</h1>
       <h2>{title}</h2>
       <div>
+      <button
+          type="button"
+          onClick={() => {
+            throw new Error("Sentry Frontend Error");
+          }}
+        >
+          Throw error
+        </button>
         <AddArticleButton openModal={ () => {} }/>
         <ArticleDate date="11.11.2022"/>
         <ArticleTitle isEdit={true} title="test" />

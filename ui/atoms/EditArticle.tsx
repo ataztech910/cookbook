@@ -23,6 +23,7 @@ const EditArticleButton = ({ editArticle, article }: { editArticle: ()=> void, a
     return (
         <>
         <button
+            role="checkbox"
             className={styles.editButton} 
             type="button" 
             onClick={ () => setModalState(true) }

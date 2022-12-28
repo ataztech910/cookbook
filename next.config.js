@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const { withSentryConfig } = require("@sentry/nextjs");
+
 const nextConfig = {
   reactStrictMode: true,
   styledComponents: true,
@@ -16,7 +18,10 @@ const nextConfig = {
     defaultLocale: 'en',
   },
   trailingSlash: true,
+  sentry: {
+    silent: true,
+  },
   pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js', 'api.ts', 'api.js']
 }
 
-module.exports = nextConfig
+module.exports = withSentryConfig(nextConfig);

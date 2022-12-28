@@ -8,12 +8,14 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
+    "cypress": "cypress open",
     "test:e2e": "yarn playwright test",
     "test:all": "yarn test --coverage && yarn playwright test"
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
     "@reduxjs/toolkit": "^1.9.0",
+    "@sentry/nextjs": "^7.28.1",
     "@types/jest": "^29.2.2",
     "@types/next-redux-wrapper": "^3.0.0",
     "@types/react-redux": "^7.1.24",
@@ -41,6 +43,7 @@
     "@types/styled-components": "^5.1.24",
     "axios": "^1.2.0",
     "babel-jest": "^28.1.1",
+    "cypress": "^12.0.2",
     "eslint": "^8.10.0",
     "eslint-config-next": "^12.1.0",
     "identity-obj-proxy": "^3.0.0",

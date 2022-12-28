@@ -43,13 +43,13 @@ const LoginForm = () => {
         <section className={styles.LoginForm}>
             <form onSubmit={loginAction}>
                 <div>
-                    <TextInput onLoginEnter={loginEnter} />
+                    <TextInput id="login" onLoginEnter={loginEnter} />
                 </div>
                 <div>
-                    <PasswordInput onPasswordEnter={passwordEnter} />
+                    <PasswordInput id="password" onPasswordEnter={passwordEnter} />
                 </div>
                 <div>
-                    <SubmitButton />
+                    <SubmitButton id="submit-login" />
                 </div>
                 <div data-testid={errorTestID}></div>
             </form>

@@ -1,11 +1,11 @@
 import { Labels } from "../../pages/core/configs"
 
-const SubmitButton = () => {
+const SubmitButton = ({id}: any) => {
     const input = {
         label: Labels.SUBMIT
     }
     return (
-        <button type="submit">{input.label}</button>
+        <button id={id} type="submit">{input.label}</button>
     )
 }
 
