@@ -1,4 +1,4 @@
-import { LoginWithGQL, LoginWithMock } from "./login-strategy"
+import { LoginWithGQL, LoginWithMock, LoginWithAmplify } from "./login-strategy"
 
 enum Configuration {
     CORRECT_REQUEST = 'Success !',
@@ -6,7 +6,8 @@ enum Configuration {
 }
 enum LoginStrategiesNames {
     MOCK = 'mock',
-    GQL = 'gql'
+    GQL = 'gql',
+    AMPLIFY = 'amplify'
 }
 
 enum UserBuilderMethods {
@@ -18,8 +19,9 @@ enum UserBuilderMethods {
 const LoginStrategies = {
     [LoginStrategiesNames.MOCK]: new LoginWithMock(),
     [LoginStrategiesNames.GQL]: new LoginWithGQL(),
+    [LoginStrategiesNames.AMPLIFY]: new LoginWithAmplify(),
 }
 
-const loginType = LoginStrategies[LoginStrategiesNames.GQL]
+const loginType = LoginStrategies[LoginStrategiesNames.AMPLIFY]
 
 export { Configuration, loginType, UserBuilderMethods }

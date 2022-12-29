@@ -16,6 +16,7 @@ interface IArticle {
     createdAt: string
     allowComments: boolean
     status: 'public' | 'draft'
+    updatedAt?: string
 }
 
 class ArticleDataService {

@@ -3,6 +3,23 @@ import { ILoginStrategy, IUser } from "./types";
 import { generateToken } from "./utils";
 import { gql } from "@apollo/client";
 import client from "../../../apollo-client";
+import Auth from "@aws-amplify/auth";
+
+class LoginWithAmplify implements ILoginStrategy { 
+    public async login(user: string, password: string) {
+        let loginState = { isLoggedIn: false, token: '', userProperties: [] };
+        try {
+            console.log({user, password});
+            const loginStateCall = await Auth.signIn(user, password);
+            if (loginStateCall.Session) {
+                loginState = { isLoggedIn: true, token: loginStateCall.Session, userProperties: [] };
+            }
+        } catch (error) {
+            console.log('error signing in', error);
+        }
+        return loginState;
+    }
+}
 
 class LoginWithMock implements ILoginStrategy {
     public async login(user: string, password: string) {
@@ -59,4 +76,4 @@ class LoginContext {
     }
 }
 
-export { LoginContext, LoginWithMock, LoginWithGQL }
+export { LoginContext, LoginWithMock, LoginWithGQL, LoginWithAmplify }

@@ -7,7 +7,7 @@ export type ArticleState = {
     description: string
     text: string
     publishingDate: string
-    isNew: boolean
+    isNew?: boolean
     save?: boolean
 }
 

@@ -1,6 +1,6 @@
 import '../styles/globals.scss'
 import { Provider } from "react-redux";
-import type { AppProps } from 'next/app'
+import type { AppProps, NextWebVitalsMetric } from 'next/app'
 import Layout from './components/layout'
 import { wrapper } from "./store";
 import { changeAuthState } from './store/authSlice';
@@ -11,11 +11,20 @@ import de from "../lang/de.json";
 import en from "../lang/en.json";
 import { IntlProvider } from "react-intl";
 import { useRouter } from 'next/router';
+import Amplify from '@aws-amplify/core';
+import config from '../pages/aws-exports';
+Amplify.configure({
+  ...config, ssr: true
+});
+
 
 const messages: any = {
   de,
   en
 };
+export function reportWebVitals(metric: NextWebVitalsMetric) {
+  console.log(metric)
+}
 
 function CookBook({ Component , pageProps }: AppProps ) {
   const { store } = wrapper.useWrappedStore(pageProps);

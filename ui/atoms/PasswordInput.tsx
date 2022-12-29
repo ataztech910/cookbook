@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Placeholders } from "../../pages/core/configs"
 import { isLetter } from "../../pages/core/utils"
 
-const PasswordInput = ({ onPasswordEnter }: any) => {
+const PasswordInput = ({ onPasswordEnter, id }: any) => {
     const input = {
         placeholder: Placeholders.PASSWORD_INPUT
     }
@@ -18,7 +18,7 @@ const PasswordInput = ({ onPasswordEnter }: any) => {
     }
 
     return (
-        <input type="password" onChange={onChangeHandler} placeholder={input.placeholder} value={value} />
+        <input id={id} type="password" onChange={onChangeHandler} placeholder={input.placeholder} value={value} />
     )
 }
 

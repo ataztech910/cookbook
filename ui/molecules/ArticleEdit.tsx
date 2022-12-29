@@ -7,7 +7,7 @@ import ArticleModalSaveButton from '../atoms/ArticleModalSaveButton';
 import ArticleText from '../atoms/ArticleText';
 import ArticleTitle from '../atoms/ArticleTitle';
 
-const ArticleEdit = ({ article, isEdit, editArticle }: { article: IArticle, isEdit: boolean, editArticle: (data?: IArticle) => void}) => {
+const ArticleEdit = ({ article, isEdit, editArticle }: { article: IArticle, isEdit: boolean, editArticle: any}) => {
 
     return (
         <>
