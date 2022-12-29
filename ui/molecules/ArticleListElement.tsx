@@ -11,9 +11,11 @@ const ArticleListElement = ({ article, isLoggedIn } : {article : IArticle, isLog
     return (
        <section className={styles.articleListElement}>
         <Link href={`/articles/${article.id}`} className={styles.linkToDiv}>
-            <div><ArticleTitle isEdit={false} title={article.title} /></div>
-            <div><ArticleDescription isEdit={false} description={article.description} /></div>
-            <div><ArticleDate date={article.publishingDate}/></div>
+            <div>
+                <div><ArticleTitle isEdit={false} title={article.title} /></div>
+                <div><ArticleDescription isEdit={false} description={article.description} /></div>
+                <div><ArticleDate date={article.publishingDate}/></div>
+            </div>
         </Link>
 
         {isLoggedIn && 
