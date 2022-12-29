@@ -18,5 +18,6 @@ interface IArticle {
     title: string
     description: string
     text: string
-    updatedAt: string
+    updatedAt?: string
+    publishingDate?: string
 }

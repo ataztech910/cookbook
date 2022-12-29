@@ -13,8 +13,8 @@ const ListPage: NextPage = ({ notFound }: any) => {
   const [ data, setData ]= useState([]);
 
   useEffect(() => {
-    const models = DataStore.query(Articles, c => c.published.eq(true));
-    models.then(result => {
+    const models = DataStore.query(Articles as any, (c: any) => c.published.eq(true));
+    models.then( (result: any) => {
       setData(result);
     }); 
   }, [])

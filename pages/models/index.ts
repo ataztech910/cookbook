@@ -4,7 +4,7 @@ import { schema } from './schema';
 
 
 
-const { ActionCounter, Articles } = initSchema(schema);
+const { ActionCounter, Articles } = initSchema(schema as any);
 
 export {
   ActionCounter,

@@ -16,35 +16,36 @@ import { DataStore } from '@aws-amplify/datastore';
 
 const ArticlePage: NextPage = ({ notFound }: any) => {
   const isLoggedIn = useSelector(selectAuthState);
-  const [ data, setData ] = useState({});
+  const [ data, setData ] = useState({} as any);
   const router = useRouter();
   const routeBack = () => {
     router.push('/articles');
   }
 
   useEffect(() => {
-    const models = DataStore.query(Articles, router.query.pid);
+    const models = DataStore.query(Articles as any, router.query.pid);
     models.then(result => {
-      setData(result);
+      result && setData(result);
     }); 
   }, [])
   
   return (
     <section className={styles.section}>
-      <div>
-        <div className={styles.title}>
-          <BackToListButton backToList={ () => routeBack()} />
-          <h1>
-            <ArticleTitle title={data.title} isEdit={false} />
-          </h1>
+      { data && <div>
+          <div className={styles.title}>
+            <BackToListButton backToList={ () => routeBack()} />
+            <h1>
+              <ArticleTitle title={data.title} isEdit={false} />
+            </h1>
+          </div>
+          <div>
+            <ArticleText text={data.text} isEdit={false} />
+          </div>
+          <div>
+            <ArticleDate date={data.updatedAt} />
+          </div>
         </div>
-        <div>
-          <ArticleText text={data.text} isEdit={false} />
-        </div>
-        <div>
-          <ArticleDate date={data.updatedAt} />
-        </div>
-      </div>
+      }
       {isLoggedIn && <div>
                 <div>
                     <EditArticleButton article={data} editArticle={() => {}} /> <br />
