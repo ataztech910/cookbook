@@ -24,4 +24,6 @@ const nextConfig = {
   pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js', 'api.ts', 'api.js']
 }
 
-module.exports = withSentryConfig(nextConfig);
+module.exports = withSentryConfig(nextConfig, {
+  dryRun: process.env.NODE_ENV !== "production"
+});
