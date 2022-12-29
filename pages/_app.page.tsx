@@ -11,6 +11,12 @@ import de from "../lang/de.json";
 import en from "../lang/en.json";
 import { IntlProvider } from "react-intl";
 import { useRouter } from 'next/router';
+import Amplify from '@aws-amplify/core';
+import config from '../pages/aws-exports';
+Amplify.configure({
+  ...config, ssr: true
+});
+
 
 const messages: any = {
   de,

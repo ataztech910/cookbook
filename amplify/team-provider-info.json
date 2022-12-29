@@ -1,0 +1,36 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-cookbook-staging-135139-authRole",
+      "UnauthRoleArn": "arn:aws:iam::876682287772:role/amplify-cookbook-staging-135139-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::876682287772:role/amplify-cookbook-staging-135139-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-cookbook-staging-135139-deployment",
+      "UnauthRoleName": "amplify-cookbook-staging-135139-unauthRole",
+      "StackName": "amplify-cookbook-staging-135139",
+      "StackId": "arn:aws:cloudformation:eu-central-1:876682287772:stack/amplify-cookbook-staging-135139/c10259c0-86b6-11ed-b26c-02ae0634dec0",
+      "AmplifyAppId": "dhwf2tz9m11z1"
+    },
+    "categories": {
+      "auth": {
+        "cookbook": {}
+      },
+      "storage": {
+        "s3cookbookstorage57b1db2a": {}
+      },
+      "function": {
+        "cookbook47c0173e": {
+          "deploymentBucketName": "amplify-cookbook-staging-135139-deployment",
+          "s3Key": "amplify-builds/cookbook47c0173e-555264396d3257775261-build.zip"
+        },
+        "cookbook830592a6": {
+          "deploymentBucketName": "amplify-cookbook-staging-135139-deployment",
+          "s3Key": "amplify-builds/cookbook830592a6-514935354e746f426545-build.zip"
+        }
+      },
+      "api": {
+        "cookbook": {}
+      }
+    }
+  }
+}

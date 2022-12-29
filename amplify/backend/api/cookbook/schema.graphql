@@ -1,0 +1,15 @@
+type ActionCounter @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  counter: Int
+}
+
+type Articles @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  title: String
+  description: String
+  text: String
+  uploaded_file_url: AWSURL
+  published: Boolean
+  scheduled_pubilsh_date: AWSDate
+}
+ 

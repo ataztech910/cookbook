@@ -1,0 +1,14 @@
+{
+  "resourceName": "s3cookbookstorage57b1db2a",
+  "bucketName": "cookbook-storage-57b1db2a",
+  "policyUUID": "ba24649f",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ]
+}

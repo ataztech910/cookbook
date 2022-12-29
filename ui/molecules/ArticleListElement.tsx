@@ -7,6 +7,7 @@ import DeleteArticleButton from '../atoms/DeleteArticle';
 import EditArticleButton from '../atoms/EditArticle';
 
 const ArticleListElement = ({ article, isLoggedIn } : {article : IArticle, isLoggedIn: boolean }) => {
+    console.log('article', article)
     return (
        <section className={styles.articleListElement}>
         <Link href={`/articles/${article.id}`} className={styles.linkToDiv}>
