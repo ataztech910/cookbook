@@ -1,6 +1,6 @@
 import styles from '../../styles/Atoms.module.scss';
 
-const ArticleDate = ({ date }: { date?: string}) => {
+const ArticleDate = ({ date }: IDate) => {
     return (
         <span className={styles.dates}>{date}</span>
     )

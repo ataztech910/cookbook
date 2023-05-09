@@ -16,9 +16,7 @@ describe("Article Slice", () => {
           publishingDate: ''
         };
           const action = changeArticleState(state);
-          const expectedResult: ArticleState = {
-            ...state,
-          };
+          const expectedResult: ArticleState = state;
           const actualResult = articleSlice.reducer(INITIAL_STATE, action);
           expect(actualResult).toEqual(expectedResult);
     });

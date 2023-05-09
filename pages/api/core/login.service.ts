@@ -1,15 +1,17 @@
 import { types } from "sass";
-import { loginType, UserBuilderMethods } from "./configuration";
+import { currentLoginStrategy, UserBuilderMethods } from "./configuration";
 import { updateStorage } from "../../core/local-storage";
 import { LoginContext } from "./login-strategy";
 import { ApplicationUser } from "./user-builder";
 import { LocalStorageKeys } from "../../core/configs";
+import { IUser } from "./types";
 
 class LoginService {
     private static instance: LoginService;
     private isLoggedIn: boolean = false;
     private token: string = '';
     private applicationUser: ApplicationUser = {} as ApplicationUser
+    private loginState: IUser | null = null;
     private constructor() {}
 
     public static getInstance(): LoginService {
@@ -22,16 +24,16 @@ class LoginService {
 
     async login(user: string, password: string) {
         // Here we will provide the login logic depending on what strategy is selected
-        const loginContext = new LoginContext(loginType);
-        const loginState = await loginContext.useLogin(user, password)
-        this.isLoggedIn = loginState.isLoggedIn;
-        this.applicationUser = new ApplicationUser(loginState)
-        loginState.userProperties.forEach((property: keyof typeof UserBuilderMethods) => {
+        const loginContext = new LoginContext(currentLoginStrategy);
+        this.loginState = await loginContext.useLogin(user, password)
+        this.isLoggedIn = this.loginState && this.loginState.isLoggedIn;
+        this.applicationUser = new ApplicationUser(this.loginState)
+        this.loginState.userProperties.forEach((property: keyof typeof UserBuilderMethods) => {
             UserBuilderMethods[property] && this.applicationUser[UserBuilderMethods[property]]()
         })
-        this.token = loginState.token;
-        updateStorage(LocalStorageKeys.LOGIN, JSON.stringify(loginState))
-        return loginState;
+        this.token = this.loginState.token;
+        updateStorage(LocalStorageKeys.LOGIN, JSON.stringify(this.loginState))
+        return this.loginState;
     }
 
     anyAPICall(data: any) {
@@ -45,6 +47,7 @@ class LoginService {
     getToken() {
         return this.token
     }
+
 }
 
 export { LoginService }

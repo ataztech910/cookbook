@@ -1,13 +1,9 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { selectAuthState } from '../../pages/store/authSlice';
-import styles from '../../styles/Atoms.module.scss';
 import ArticleDescription from '../atoms/ArticleDescription';
 import ArticleModalSaveButton from '../atoms/ArticleModalSaveButton';
 import ArticleText from '../atoms/ArticleText';
 import ArticleTitle from '../atoms/ArticleTitle';
 
-const ArticleEdit = ({ article, isEdit, editArticle }: { article: IArticle, isEdit: boolean, editArticle: any}) => {
+const ArticleEdit = ({ article, isEdit, editArticle }: IArticelEdit) => {
 
     return (
         <>

@@ -6,7 +6,7 @@ const DeleteArticleButton = ({ deleteArticle }: IArticleActions) => {
         <button
             className={styles.deleteButton} 
             type="button" 
-            onClick={ () => deleteArticle && deleteArticle() }
+            onClick={ () => deleteArticle?.() }
         >{Labels.DELETE}</button>
     )
 }

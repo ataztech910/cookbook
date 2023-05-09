@@ -1,30 +1,17 @@
-import type { GetServerSideProps, NextPage } from 'next'
-import axios from 'axios';
+import type { NextPage } from 'next'
 import ArticleListElement from '../../ui/molecules/ArticleListElement';
-import { Fragment, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { Fragment } from 'react';
 import { selectAuthState } from '../store/authSlice';
-import { DataStore } from '@aws-amplify/datastore';
-import { Articles } from '../models/index';
-import { useState } from 'react';
+import { useAppSelector } from '../hooks';
 
-const ListPage: NextPage = ({ notFound }: any) => {
-  const isLoggedIn = useSelector(selectAuthState);
-  const [ data, setData ]= useState([]);
-
-  useEffect(() => {
-    const models = DataStore.query(Articles as any, (c: any) => c.published.eq(true));
-    models.then( (result: any) => {
-      setData(result);
-    }); 
-  }, [])
+const ListPage: NextPage = ({ data, notFound }: IListPage) => {
+  const isLoggedIn = useAppSelector(selectAuthState);
 
   return (
     <section>
       <h1>Articles list</h1>
       {
-        data &&
-        data.map((item: any) => {
+        data?.map((item: any) => {
           return <Fragment key={item.id}>
                   <ArticleListElement  
                     isLoggedIn={isLoggedIn}
@@ -39,29 +26,5 @@ const ListPage: NextPage = ({ notFound }: any) => {
     </section>
   )
 }
-
-// export async function getServerSideProps() {
-//   try {
-//     // This part can be changed to service
-   
-
-//     const { data } = await axios.get<any>(
-//       'http://localhost:3005/api/articles'
-//     );
-//     if (!data) {
-//       return {
-//         props: { notFound: true },
-//       };
-//     }
-
-//     return {
-//       props: { data },
-//     };
-//   } catch (error) {
-//     return {
-//       props: { notFound: true },
-//     };
-//   }
-// };
 
 export default ListPage

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { Placeholders } from "../../pages/core/configs"
 import { isLetter } from "../../pages/core/utils";
 
@@ -10,7 +10,7 @@ const TextInput = ({ onLoginEnter, id } : any) => {
 
     const [value, setValue] = useState('')
 
-    const onChangeHandler = (event: Partial<any>) => {
+    const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value
         if(isLetter(value) && value.length <= maxValueLength) {
             setValue(value)

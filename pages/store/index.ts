@@ -15,7 +15,7 @@ const apiCallMiddleware = (store: any) => (next: any) => (action: any) => {
 };
 
 export const store = configureStore({
-  middleware: (getDefaultMiddleware: any) =>
+  middleware: (getDefaultMiddleware) =>
                     getDefaultMiddleware()
                       .concat(apiCallMiddleware),
   reducer: {

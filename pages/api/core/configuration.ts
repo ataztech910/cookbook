@@ -22,6 +22,6 @@ const LoginStrategies = {
     [LoginStrategiesNames.AMPLIFY]: new LoginWithAmplify(),
 }
 
-const loginType = LoginStrategies[LoginStrategiesNames.AMPLIFY]
+const currentLoginStrategy = LoginStrategies[LoginStrategiesNames.AMPLIFY]
 
-export { Configuration, loginType, UserBuilderMethods }
+export { Configuration, currentLoginStrategy, UserBuilderMethods }

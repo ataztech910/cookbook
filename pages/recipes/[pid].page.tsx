@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { ArticleDataService, IArticle } from '../core/articles-data.service'
 import styles from '../../styles/Recipes.module.scss'
 import { BurgerDirector } from '../core/burger-director'
@@ -11,7 +11,7 @@ const Recipe = ({ initialData }: Partial<any>) => {
   const router = useRouter()
   const [content, setContent] = useState<IArticle>({} as IArticle);
   const { pid } = router.query
-  let links = ArticleDataService.getInstance().getNavigation()
+  const links = ArticleDataService.getInstance().getNavigation()
   const burgerBuilder = new BurgerBuilder()
   const burgerDirector = new BurgerDirector()
   burgerDirector.setBuilder(burgerBuilder)
@@ -30,11 +30,11 @@ const Recipe = ({ initialData }: Partial<any>) => {
 
   useEffect(() => {
     if (pid) {
-      setContent( content => ({...ArticleDataService.getInstance().getArticle(pid as string) as any}))
+      setContent( {...ArticleDataService.getInstance().getArticle(pid as string) } )
     }
   }, [pid])
 
-  useEffect(() => {
+  useMemo(() => {
     if(Object.keys(content).length > 0) {
       console.log("content.burger", content.burger)
       burgerType = Strategies[content.burger as StrategiesNames]

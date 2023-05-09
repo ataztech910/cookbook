@@ -37,7 +37,7 @@ describe('UI inputs must render properly', () => {
 
     expectation(testObject.isTextInput(screen))
 
-    fireEvent.change(input, { target: { value: 'тест' } })
+    fireEvent.change(input, { target: { value: 'おはようございます' } })
     expect(input).toHaveDisplayValue('')
 
     const generatedLogin = makeLogin(101)

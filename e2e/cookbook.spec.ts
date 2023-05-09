@@ -33,13 +33,12 @@ test.describe('Cookbook pages should work correctly', () => {
     test('Add article should open the modal',async ({page}) => {
         await page.goto(Configuration.HOST + '/articles');
         const buttons = await page.locator('button').first();
-        buttons.first().click();
+        buttons.click();
         await expect(page.locator('id=edit').first()).not.toBeHidden();
     })
     test('Edit button should open the modal',async ({page}) => {
         await page.goto(Configuration.HOST + '/articles');
         const editButtons = await page.locator('role=checkbox');
-        console.log(editButtons);
         editButtons.first().click();
         await expect(page.locator('id=edit').first()).not.toBeHidden();
     })

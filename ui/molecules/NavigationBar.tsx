@@ -5,7 +5,7 @@ import LinkToPage from '../atoms/LinkToPage';
 import Separator from '../atoms/Separator';
 
 
-const NavigationBar = ({ navigation } : {navigation : Array<INavigation>}) => {
+const NavigationBar = ({ navigation } : INavigationParams) => {
     const router = useRouter();
     return (
         <nav className={styles.nav}>

@@ -4,10 +4,9 @@ import SubmitButton from '../atoms/SubmitButton'
 import { TestIDs } from '../../pages/core/configs'
 import styles from '../../styles/LoginForm.module.scss'
 import { LoginService } from '../../pages/api/core/login.service'
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 import { useAppDispatch } from '../../pages/hooks'
 import { changeAuthState } from "../../pages/store/authSlice";
-import { useSelector } from "react-redux";
 import { useRouter } from 'next/router'
 
 const LoginForm = () => {
@@ -19,7 +18,7 @@ const LoginForm = () => {
 
     const errorTestID = TestIDs.ERROR
     const loginService = LoginService.getInstance()
-    const loginAction = async (event: any) => {
+    const loginAction = async (event: FormEvent<HTMLFormElement>) => {
         console.log('login');
         event.preventDefault();
         const loginState = await loginService.login(login, password);
@@ -51,7 +50,7 @@ const LoginForm = () => {
                 <div>
                     <SubmitButton id="submit-login" />
                 </div>
-                <div data-testid={errorTestID}></div>
+                <div data-testid={errorTestID} />
             </form>
         </section>
     )
